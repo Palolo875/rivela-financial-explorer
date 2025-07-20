@@ -2,13 +2,16 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { QuestionInput } from "@/components/financial/QuestionInput";
 import { FinancialMapping, FinancialData } from "@/components/financial/FinancialMapping";
+import RevelationScreen from "@/components/financial/RevelationScreen";
+import ScenarioExplorer from "@/components/financial/ScenarioExplorer";
 
-type AppStep = "question" | "mapping" | "revelation";
+type AppStep = "question" | "mapping" | "revelation" | "scenario";
 
 const Index = () => {
   const [currentStep, setCurrentStep] = useState<AppStep>("question");
   const [userQuestion, setUserQuestion] = useState("");
   const [financialData, setFinancialData] = useState<FinancialData | null>(null);
+  const [selectedScenario, setSelectedScenario] = useState<string | null>(null);
 
   const handleQuestionSubmit = (question: string) => {
     setUserQuestion(question);
@@ -28,6 +31,16 @@ const Index = () => {
   const handleBackToMapping = () => {
     setCurrentStep("mapping");
     setFinancialData(null);
+  };
+
+  const handleScenarioExploration = (scenarioId: string) => {
+    setSelectedScenario(scenarioId);
+    setCurrentStep("scenario");
+  };
+
+  const handleBackToRevelation = () => {
+    setSelectedScenario(null);
+    setCurrentStep("revelation");
   };
 
   return (
@@ -77,24 +90,31 @@ const Index = () => {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 1.1 }}
               transition={{ duration: 0.8 }}
-              className="text-center space-y-8"
             >
-              <div className="glass-card p-12 revelation-glow">
-                <h1 className="text-4xl font-bold bg-gradient-revelation bg-clip-text text-transparent mb-6">
-                  🎉 Révélation en cours...
-                </h1>
-                <p className="text-xl text-muted-foreground">
-                  Vos insights financiers personnalisés arrivent bientôt !
-                </p>
-                <div className="mt-8">
-                  <button
-                    onClick={handleBackToMapping}
-                    className="text-primary hover:underline"
-                  >
-                    ← Revenir à la cartographie
-                  </button>
-                </div>
-              </div>
+              <RevelationScreen
+                data={{
+                  question: userQuestion,
+                  financialData,
+                  emotionalContext: {}
+                }}
+                onBack={handleBackToMapping}
+                onExploreScenario={handleScenarioExploration}
+              />
+            </motion.div>
+          )}
+
+          {currentStep === "scenario" && selectedScenario && (
+            <motion.div
+              key="scenario"
+              initial={{ opacity: 0, x: 100 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -100 }}
+              transition={{ duration: 0.6 }}
+            >
+              <ScenarioExplorer
+                scenarioId={selectedScenario}
+                onBack={handleBackToRevelation}
+              />
             </motion.div>
           )}
         </AnimatePresence>

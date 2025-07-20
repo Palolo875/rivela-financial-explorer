@@ -8,6 +8,7 @@ interface GlassCardProps {
   hover?: boolean;
   glow?: boolean;
   animate?: boolean;
+  onClick?: () => void;
 }
 
 const GlassCard = ({ 
@@ -15,7 +16,8 @@ const GlassCard = ({
   className, 
   hover = false, 
   glow = false,
-  animate = true 
+  animate = true,
+  onClick 
 }: GlassCardProps) => {
   const Component = animate ? motion.div : 'div';
   const motionProps = animate ? {
@@ -27,6 +29,7 @@ const GlassCard = ({
   return (
     <Component
       {...motionProps}
+      onClick={onClick}
       className={cn(
         "glass-card rounded-lg p-6",
         hover && "hover-lift cursor-pointer",
