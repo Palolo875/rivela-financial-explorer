@@ -2,41 +2,74 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
+/* 🌟 RIVELA DESIGN SYSTEM - Financial Revelation Interface
+All colors MUST be HSL for perfect theme consistency.
+Glassmorphism + Neuroscience + Financial Insights
 */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* 🎨 Rivela Color Palette - Inspired by financial trust & revelation */
+    --background: 220 25% 97%;
+    --foreground: 225 15% 15%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 220 20% 98%;
+    --card-foreground: 225 15% 15%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 220 25% 98%;
+    --popover-foreground: 225 15% 15%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* 🔮 Primary - Deep financial insight blue */
+    --primary: 225 85% 58%;
+    --primary-foreground: 220 25% 98%;
+    --primary-glow: 225 95% 68%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* 💎 Secondary - Trust & stability */
+    --secondary: 250 15% 92%;
+    --secondary-foreground: 225 15% 25%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* 🌸 Muted - Soft revelation tones */
+    --muted: 245 20% 94%;
+    --muted-foreground: 225 10% 45%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* ✨ Accent - "Aha moment" highlight */
+    --accent: 280 75% 65%;
+    --accent-foreground: 220 25% 98%;
+    --accent-soft: 280 60% 92%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    /* 🚨 Destructive - Financial alerts */
+    --destructive: 0 85% 62%;
+    --destructive-foreground: 220 25% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    /* 💰 Success - Financial wins */
+    --success: 140 70% 55%;
+    --success-foreground: 220 25% 98%;
+    --success-soft: 140 45% 92%;
 
-    --radius: 0.5rem;
+    /* 📊 Warning - Financial attention */
+    --warning: 38 95% 62%;
+    --warning-foreground: 225 15% 15%;
+    --warning-soft: 38 70% 92%;
+
+    /* 🎭 Borders & inputs */
+    --border: 245 25% 88%;
+    --input: 245 25% 90%;
+    --ring: 225 85% 58%;
+
+    /* 🌈 Gradients - Glassmorphism magic */
+    --gradient-primary: linear-gradient(135deg, hsl(225 85% 58%), hsl(280 75% 65%));
+    --gradient-subtle: linear-gradient(180deg, hsl(220 25% 98%), hsl(245 20% 94%));
+    --gradient-revelation: linear-gradient(145deg, hsl(280 75% 65%), hsl(225 85% 58%), hsl(190 85% 58%));
+    --gradient-glass: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+
+    /* ✨ Shadows - Depth & elevation */
+    --shadow-soft: 0 4px 20px hsl(225 85% 58% / 0.1);
+    --shadow-glass: 0 8px 32px hsl(225 85% 58% / 0.08);
+    --shadow-revelation: 0 20px 60px hsl(280 75% 65% / 0.15);
+    --shadow-elegant: 0 10px 40px hsl(225 15% 15% / 0.05);
+
+    /* 🎯 Radius - Modern curvature */
+    --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
 
@@ -100,6 +133,148 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
+    background: var(--gradient-subtle);
+    background-attachment: fixed;
+  }
+
+  /* 🔮 Glass Morphism Components */
+  .glass-card {
+    @apply backdrop-blur-xl bg-white/10 border border-white/20;
+    box-shadow: var(--shadow-glass);
+    background: var(--gradient-glass);
+  }
+
+  .glass-button {
+    @apply backdrop-blur-md bg-white/20 border border-white/30 hover:bg-white/30 transition-all duration-300;
+    box-shadow: var(--shadow-soft);
+  }
+
+  /* ✨ Revelation Animations */
+  .particle-container {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .revelation-glow {
+    @apply animate-pulse;
+    box-shadow: var(--shadow-revelation);
+    background: var(--gradient-revelation);
+  }
+
+  /* 🎯 Interactive Elements */
+  .financial-input {
+    @apply bg-white/60 backdrop-blur-sm border-white/40 focus:border-primary/60 focus:ring-2 focus:ring-primary/20 transition-all duration-300;
+    box-shadow: var(--shadow-soft);
+  }
+
+  .hover-lift {
+    @apply transition-all duration-300 hover:scale-105 hover:-translate-y-1;
+    box-shadow: var(--shadow-elegant);
+  }
+
+  .hover-lift:hover {
+    box-shadow: var(--shadow-revelation);
+  }
+
+  /* 📊 Financial Status Colors */
+  .status-success {
+    @apply bg-gradient-to-r from-success to-success-soft text-success-foreground;
+  }
+
+  .status-warning {
+    @apply bg-gradient-to-r from-warning to-warning-soft text-warning-foreground;
+  }
+
+  .status-accent {
+    @apply bg-gradient-to-r from-accent to-accent-soft text-accent-foreground;
+  }
+}
+
+/* 🎨 Component Animations */
+@layer components {
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.8s ease-out forwards;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.5s ease-out forwards;
+  }
+
+  .animate-revelation {
+    animation: revelation 1.2s ease-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes revelation {
+    0% {
+      opacity: 0;
+      transform: scale(0.8) rotateY(-10deg);
+    }
+    50% {
+      opacity: 0.8;
+      transform: scale(1.05) rotateY(5deg);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1) rotateY(0deg);
+    }
+  }
+
+  /* 🎪 Particle effects */
+  .particle-burst {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: var(--gradient-primary);
+    border-radius: 50%;
+    animation: particleBurst 2s ease-out forwards;
+  }
+
+  @keyframes particleBurst {
+    0% {
+      opacity: 1;
+      transform: scale(0) translate(0, 0);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(1) translate(var(--dx), var(--dy));
+    }
   }
 }
