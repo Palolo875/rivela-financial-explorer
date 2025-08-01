@@ -4,8 +4,9 @@ import { QuestionInput } from "@/components/financial/QuestionInput";
 import { FinancialMapping, FinancialData } from "@/components/financial/FinancialMapping";
 import RevelationScreen from "@/components/financial/RevelationScreen";
 import ScenarioExplorer from "@/components/financial/ScenarioExplorer";
+import DashboardMain from "@/components/dashboard/DashboardMain";
 
-type AppStep = "question" | "mapping" | "revelation" | "scenario";
+type AppStep = "question" | "mapping" | "revelation" | "scenario" | "dashboard";
 
 const Index = () => {
   const [currentStep, setCurrentStep] = useState<AppStep>("question");
