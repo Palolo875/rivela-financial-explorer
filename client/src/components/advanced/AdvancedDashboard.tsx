@@ -322,7 +322,7 @@ const AdvancedDashboard: React.FC<AdvancedDashboardProps> = ({ userId }) => {
                 <div>
                   <p className="text-sm font-medium text-slate-600 dark:text-slate-300">Objectifs</p>
                   <p className="text-3xl font-bold text-blue-600">
-                    {budgetCategories.filter(c => c.type === 'investment').length}
+                    {budgetCategories.filter((c: any) => c.type === 'investment').length}
                   </p>
                 </div>
                 <Target className="h-8 w-8 text-blue-500" />

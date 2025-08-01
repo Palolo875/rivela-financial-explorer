@@ -1,6 +1,6 @@
 import { drizzle } from "drizzle-orm/neon-http";
 import { neon } from "@neondatabase/serverless";
-import { eq } from "drizzle-orm";
+import { eq, and } from "drizzle-orm";
 import { 
   userProfiles, 
   moodEntries, 
@@ -230,11 +230,14 @@ export class DatabaseStorage implements IStorage {
 
   // Transaction methods
   async getTransactions(userId: string, limit: number = 100, categoryId?: string): Promise<Transaction[]> {
-    let query = db.select().from(transactions).where(eq(transactions.userId, userId)).orderBy(transactions.date).limit(limit);
+    const conditions = [eq(transactions.userId, userId)];
     if (categoryId) {
-      query = query.where(eq(transactions.categoryId, categoryId));
+      conditions.push(eq(transactions.categoryId, categoryId));
     }
-    return await query;
+    return await db.select().from(transactions)
+      .where(and(...conditions))
+      .orderBy(transactions.date)
+      .limit(limit);
   }
 
   async createTransaction(transaction: InsertTransaction): Promise<Transaction> {
@@ -258,11 +261,14 @@ export class DatabaseStorage implements IStorage {
 
   // Financial Insights methods
   async getFinancialInsights(userId: string, type?: string, limit: number = 50): Promise<FinancialInsight[]> {
-    let query = db.select().from(financialInsights).where(eq(financialInsights.userId, userId)).orderBy(financialInsights.createdAt).limit(limit);
+    const conditions = [eq(financialInsights.userId, userId)];
     if (type) {
-      query = query.where(eq(financialInsights.type, type));
+      conditions.push(eq(financialInsights.type, type));
     }
-    return await query;
+    return await db.select().from(financialInsights)
+      .where(and(...conditions))
+      .orderBy(financialInsights.createdAt)
+      .limit(limit);
   }
 
   async createFinancialInsight(insight: InsertFinancialInsight): Promise<FinancialInsight> {
@@ -281,11 +287,13 @@ export class DatabaseStorage implements IStorage {
 
   // Simulation Template methods
   async getSimulationTemplates(category?: string, isPublic: boolean = true): Promise<SimulationTemplate[]> {
-    let query = db.select().from(simulationTemplates).where(eq(simulationTemplates.isPublic, isPublic)).orderBy(simulationTemplates.usageCount);
+    const conditions = [eq(simulationTemplates.isPublic, isPublic)];
     if (category) {
-      query = query.where(eq(simulationTemplates.category, category));
+      conditions.push(eq(simulationTemplates.category, category));
     }
-    return await query;
+    return await db.select().from(simulationTemplates)
+      .where(and(...conditions))
+      .orderBy(simulationTemplates.usageCount);
   }
 
   async createSimulationTemplate(template: InsertSimulationTemplate): Promise<SimulationTemplate> {
