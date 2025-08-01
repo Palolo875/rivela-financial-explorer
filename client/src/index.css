@@ -109,9 +109,18 @@ Glassmorphism + Neuroscience + Financial Insights
 
     --accent: 217.2 32.6% 17.5%;
     --accent-foreground: 210 40% 98%;
+    --accent-soft: 217.2 32.6% 25%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
+
+    --success: 140 70% 45%;
+    --success-foreground: 210 40% 98%;
+    --success-soft: 140 45% 20%;
+
+    --warning: 38 95% 52%;
+    --warning-foreground: 210 40% 98%;
+    --warning-soft: 38 70% 20%;
 
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
