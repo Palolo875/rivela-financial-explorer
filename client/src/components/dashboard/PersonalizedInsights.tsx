@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { GlassCard } from "@/components/ui/glass-card";
 import { Badge } from "@/components/ui/badge";
@@ -177,7 +177,7 @@ export const PersonalizedInsights = ({ data }: PersonalizedInsightsProps) => {
         >
           <div className="flex items-start gap-4">
             <div className={`p-3 rounded-full ${insights[currentInsight].color}`}>
-              <insights[currentInsight].icon className="w-6 h-6" />
+              {React.createElement(insights[currentInsight].icon, { className: "w-6 h-6" })}
             </div>
             
             <div className="flex-1">

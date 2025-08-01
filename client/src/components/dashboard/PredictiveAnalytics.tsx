@@ -85,7 +85,7 @@ export const PredictiveAnalytics = ({ data }: PredictiveAnalyticsProps) => {
       return projection;
     };
 
-    const predictionData = {};
+    const predictionData: any = {};
     Object.entries(scenarios).forEach(([key, scenario]) => {
       predictionData[key] = {
         scenario,
@@ -301,7 +301,7 @@ export const PredictiveAnalytics = ({ data }: PredictiveAnalyticsProps) => {
 
         {getChartData() && (
           <div className="h-80 mb-6">
-            <Line data={getChartData()} options={chartOptions} />
+            <Line data={getChartData()!} options={chartOptions} />
           </div>
         )}
 

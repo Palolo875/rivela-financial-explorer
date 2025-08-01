@@ -93,14 +93,11 @@ export const ExportCenter = ({ data }: ExportCenterProps) => {
     
     // Ici on implémenterait la vraie logique d'export
     if (format.name.includes("PDF")) {
-      // Logique jsPDF
-      console.log("Exporting PDF...");
+      // Logique jsPDF - implementation here
     } else if (format.name.includes("Excel")) {
-      // Logique Excel export
-      console.log("Exporting Excel...");
+      // Logique Excel export - implementation here
     } else if (format.name.includes("Infographie")) {
-      // Logique html2canvas
-      console.log("Exporting Image...");
+      // Logique html2canvas - implementation here
     }
     
     setIsExporting(false);

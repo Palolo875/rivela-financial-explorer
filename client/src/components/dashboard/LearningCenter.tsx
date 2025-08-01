@@ -24,11 +24,36 @@ interface LearningCenterProps {
   userProfile: any;
 }
 
+interface Lesson {
+  id: string;
+  title: string;
+  description: string;
+  duration: string;
+  difficulty: string;
+  personalizedFor?: string;
+  completion: number;
+  tags: string[];
+}
+
+interface LessonsData {
+  [key: string]: Lesson[];
+}
+
+interface CategoryInfo {
+  name: string;
+  icon: any;
+  description: string;
+}
+
+interface CategoriesData {
+  [key: string]: CategoryInfo;
+}
+
 export const LearningCenter = ({ userProfile }: LearningCenterProps) => {
   const [selectedCategory, setSelectedCategory] = useState("recommended");
   const [completedLessons, setCompletedLessons] = useState<Set<string>>(new Set());
 
-  const learningCategories = {
+  const learningCategories: CategoriesData = {
     recommended: {
       name: "Recommandé pour vous",
       icon: Target,
@@ -51,7 +76,7 @@ export const LearningCenter = ({ userProfile }: LearningCenterProps) => {
     }
   };
 
-  const lessons = {
+  const lessons: LessonsData = {
     recommended: [
       {
         id: "rec1",
@@ -200,13 +225,13 @@ export const LearningCenter = ({ userProfile }: LearningCenterProps) => {
   };
 
   const startLesson = (lessonId: string) => {
-    // Simulation de démarrage de leçon
-    console.log(`Starting lesson: ${lessonId}`);
+    // Simulation de démarrage de leçon - would redirect to lesson or open modal
+    // Implementation needed
   };
 
   const toggleBookmark = (lessonId: string) => {
-    // Logique de bookmark
-    console.log(`Toggling bookmark for: ${lessonId}`);
+    // Logique de bookmark - would update user preferences
+    // Implementation needed
   };
 
   const calculateCategoryProgress = (category: string) => {
@@ -304,7 +329,7 @@ export const LearningCenter = ({ userProfile }: LearningCenterProps) => {
         </div>
 
         <div className="space-y-4">
-          {(lessons[selectedCategory] || []).map((lesson, index) => (
+          {(lessons[selectedCategory] || []).map((lesson: Lesson, index: number) => (
             <motion.div
               key={lesson.id}
               initial={{ opacity: 0, x: -20 }}
@@ -353,7 +378,7 @@ export const LearningCenter = ({ userProfile }: LearningCenterProps) => {
                   </div>
                   
                   <div className="flex flex-wrap gap-2 mb-3">
-                    {lesson.tags.map((tag, tagIndex) => (
+                    {lesson.tags.map((tag: string, tagIndex: number) => (
                       <Badge key={tagIndex} variant="outline" className="text-xs">
                         {tag}
                       </Badge>

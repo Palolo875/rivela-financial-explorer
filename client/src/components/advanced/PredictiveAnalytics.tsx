@@ -89,7 +89,7 @@ const PredictiveAnalytics: React.FC<PredictiveAnalyticsProps> = ({ userId }) => 
         y: parseFloat(t.amount)
       }));
       
-      const avgIncome = incomeData.reduce((sum, d) => sum + d.y, 0) / incomeData.length;
+      const avgIncome = incomeData.reduce((sum: number, d: any) => sum + d.y, 0) / incomeData.length;
       const trend = calculateLinearTrend(incomeData);
       
       const futureIncome = avgIncome + (trend * 6); // 6 months projection
@@ -122,7 +122,7 @@ const PredictiveAnalytics: React.FC<PredictiveAnalyticsProps> = ({ userId }) => 
       
       if (categoryTransactions.length >= 2) {
         const expenses = categoryTransactions.map((t: any) => parseFloat(t.amount));
-        const avgExpense = expenses.reduce((sum, exp) => sum + exp, 0) / expenses.length;
+        const avgExpense = expenses.reduce((sum: number, exp: number) => sum + exp, 0) / expenses.length;
         const variance = calculateVariance(expenses);
         const volatility = Math.sqrt(variance) / avgExpense;
         
@@ -334,7 +334,7 @@ const PredictiveAnalytics: React.FC<PredictiveAnalyticsProps> = ({ userId }) => 
         backgroundColor: 'rgba(59, 130, 246, 0.1)',
         fill: true,
         tension: 0.4,
-        borderDash: balancePrediction.dataPoints.map(dp => dp.predicted ? [5, 5] : []),
+        borderDash: balancePrediction.dataPoints.some(dp => dp.predicted) ? [5, 5] : undefined,
       }]
     };
   };

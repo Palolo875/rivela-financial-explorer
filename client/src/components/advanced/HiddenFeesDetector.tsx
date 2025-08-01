@@ -96,7 +96,7 @@ const HiddenFeesDetector: React.FC<HiddenFeesDetectorProps> = ({ userId }) => {
 
   // Fetch transactions
   const { data: transactions = [], isLoading } = useQuery({
-    queryKey: ['transactions', userId, analysisperiod],
+    queryKey: ['transactions', userId, analysisPeriod],
     queryFn: () => fetch(`/api/transactions/${userId}?limit=1000`).then(res => res.json()),
   });
 
@@ -384,7 +384,7 @@ const HiddenFeesDetector: React.FC<HiddenFeesDetectorProps> = ({ userId }) => {
                 <span className="text-sm font-medium">Filtres:</span>
               </div>
               
-              <Select value={analysisperiod} onValueChange={setAnalysisPeriod}>
+              <Select value={analysisPeriod} onValueChange={setAnalysisPeriod}>
                 <SelectTrigger className="w-40">
                   <SelectValue />
                 </SelectTrigger>
